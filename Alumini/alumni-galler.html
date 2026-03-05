@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notable Alumni — Sri Sai Inter College</title>
+  <link rel="icon" type="image/png" href="img/Logo.png">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Mulish:wght@300;400;500;600;700&family=Baloo+2:wght@400;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="alumni.css">
+  <style>
+  </style>
+</head>
+
+<body>
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <div class="container">
+      <div>
+        <i class="fas fa-phone-alt"></i>
+        <a href="tel:+917860000000">+91 786-000-0000</a>
+        <i class="fas fa-envelope"></i>
+        <a href="mailto:info@srisaiintercollege.in">info@srisaiintercollege.in</a>
+      </div>
+      <div>
+        <a href="/index.html#admission"><i class="fas fa-user-plus"></i> Apply Now</a>
+        <a href="sri_sai_inter_college.html#contact"><i class="fas fa-map-marker-alt"></i> Location</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container header-inner">
+      <a href="sri_sai_inter_college.html" class="logo-area">
+        <div
+          style="width:52px;height:52px;background:linear-gradient(135deg,var(--red),var(--red-dark));border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;font-weight:800;font-family:'Baloo 2',cursive;">
+          SS</div>
+        <div class="logo-text">
+          <h1>Sri Sai Inter College</h1>
+          <p>Committed to Excellence in Education</p>
+        </div>
+      </a>
+      <a href="sri_sai_inter_college.html" class="back-btn">
+        <i class="fas fa-arrow-left"></i> Back to Home
+      </a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <div class="page-hero">
+    <div class="container">
+      <div class="section-tag">🎓 Success Stories</div>
+      <h1>Our <span>Notable Alumni</span></h1>
+      <p>Former students of Sri Sai Inter College who are leading successful careers across India and the world.</p>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-num" id="heroCount">0</div>
+          <div class="hero-stat-label">Alumni Listed</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">15+</div>
+          <div class="hero-stat-label">Career Fields</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">10+</div>
+          <div class="hero-stat-label">Years of Legacy</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FILTERS -->
+  <div class="filters-bar">
+    <div class="container filters-inner">
+      <div class="filter-group">
+        <span class="filter-label">Filter:</span>
+        <button class="filter-btn active" onclick="filterAlumni('all', this)">All</button>
+        <button class="filter-btn" onclick="filterAlumni('engineering', this)">Engineering</button>
+        <button class="filter-btn" onclick="filterAlumni('medical', this)">Medical</button>
+        <button class="filter-btn" onclick="filterAlumni('government', this)">Govt. Services</button>
+        <button class="filter-btn" onclick="filterAlumni('business', this)">Business</button>
+        <button class="filter-btn" onclick="filterAlumni('other', this)">Others</button>
+      </div>
+      <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="Search alumni..." id="searchInput" oninput="searchAlumni()">
+      </div>
+    </div>
+  </div>
+
+  <!-- ALUMNI GRID -->
+  <section class="alumni-section">
+    <div class="container">
+      <div class="grid-header">
+        <h2>All <span>Alumni</span></h2>
+        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+          <span class="count-badge" id="countBadge">0 Alumni</span>
+          <button class="card-btn card-btn-red" onclick="openAddModal()" style="padding:10px 20px;font-size:13px">
+            <i class="fas fa-plus"></i> Add Alumni
+          </button>
+        </div>
+      </div>
+
+      <div class="alumni-grid" id="alumniGrid">
+
+        <!-- Cards are rendered by JS -->
+
+        <div class="add-alumni-card" onclick="openAddModal()" id="addCard">
+          <i class="fas fa-user-plus"></i>
+          <span>Add New Alumni</span>
+          <small>Click to add the first alumni</small>
+        </div>
+      </div>
+
+      <div class="empty-state" id="emptyState">
+        <i class="fas fa-user-slash"></i>
+        <p>No alumni found matching your search.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p>© 2025 <span>Sri Sai Inter College</span>. All Rights Reserved. &nbsp;|&nbsp;
+        <a href="sri_sai_inter_college.html">Home</a>
+        <a href="sri_sai_inter_college.html#contact">Contact</a>
+        <a href="sri_sai_inter_college.html#admission">Admission</a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- BACK TO TOP -->
+  <a href="#" class="back-top" id="backTop"><i class="fas fa-chevron-up"></i></a>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <!-- ADD / EDIT MODAL -->
+  <div class="modal-overlay" id="addModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 id="modalTitle">✨ Add New Alumni</h3>
+        <button class="modal-close" onclick="closeModal('addModal')"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <!-- Photo -->
+        <div class="photo-upload-area">
+          <div class="photo-preview" id="photoPreview" onclick="document.getElementById('photoFileInput').click()">
+            <img id="photoPreviewImg" alt="Alumni Photo">
+            <i class="fas fa-user" id="photoIcon"></i>
+          </div>
+          <label class="photo-upload-label" onclick="document.getElementById('photoFileInput').click()">
+            <i class="fas fa-camera"></i> Upload Photo
+          </label>
+          <input type="file" id="photoFileInput" accept="image/*" style="display:none"
+            onchange="handlePhotoUpload(this)">
+          <input type="hidden" id="photoData">
+        </div>
+        <!-- Form -->
+        <div class="form-grid">
+          <div class="fg">
+            <label>Full Name *</label>
+            <input type="text" id="f-name" placeholder="e.g. Rahul Sharma">
+          </div>
+          <div class="fg">
+            <label>Batch / Passing Year *</label>
+            <input type="text" id="f-batch" placeholder="e.g. 2018">
+          </div>
+          <div class="fg full">
+            <label>Current Role / Designation *</label>
+            <input type="text" id="f-role" placeholder="e.g. Software Engineer, IAS Officer, Doctor">
+          </div>
+          <div class="fg full">
+            <label>Organisation / Company / Institute</label>
+            <input type="text" id="f-org" placeholder="e.g. Google, AIIMS, Govt. of India">
+          </div>
+          <div class="fg">
+            <label>Location</label>
+            <input type="text" id="f-location" placeholder="e.g. Bengaluru, India">
+          </div>
+          <div class="fg">
+            <label>Category *</label>
+            <select id="f-category">
+              <option value="engineering">Engineering / Tech</option>
+              <option value="medical">Medical / Health</option>
+              <option value="government">Govt. Services / IAS / IPS</option>
+              <option value="business">Business / Entrepreneur</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="fg full">
+            <label>Branch Attended</label>
+            <select id="f-branch">
+              <option value="">-- Select Branch --</option>
+              <option value="UP Board Wing">UP Board Wing (6th–12th)</option>
+              <option value="IIT/NEET Wing">IIT-JEE / NEET Wing</option>
+            </select>
+          </div>
+          <div class="fg full">
+            <label>Achievement / Quote (optional)</label>
+            <textarea id="f-quote"
+              placeholder="e.g. Cleared UPSC in first attempt. Proud to be a Sri Sai alumni!"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn-cancel" onclick="closeModal('addModal')">Cancel</button>
+          <button class="btn-save" onclick="saveAlumni()">
+            <i class="fas fa-save"></i> Save Alumni
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DELETE CONFIRM -->
+  <div class="modal-overlay" id="deleteModal">
+    <div class="modal confirm-modal">
+      <div class="modal-body">
+        <i class="fas fa-trash-alt"></i>
+        <h3>Remove Alumni?</h3>
+        <p>Are you sure you want to remove this alumni profile? This action cannot be undone.</p>
+        <div class="confirm-btns">
+          <button class="btn-cancel" onclick="closeModal('deleteModal')" style="padding:11px 22px">Cancel</button>
+          <button class="btn-save" onclick="confirmDelete()" style="background:#e74c3c">
+            <i class="fas fa-trash"></i> Yes, Remove
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="alumni.js">
+  </script>
+</body>
+
+</html>
